@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Articles</title>
+    <!-- font-awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <!-- styles -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section class="articles">
+      <!-- title-->
+      <div class="title">
+        <h2>Articles</h2>
+        <div class="underline"></div>
+      </div>
+      <!-- filter buttons-->
+      <div class="btn-container">
+        <button class="filter-btn" data-id="articles">Nos articles</button>
+        <button class="filter-btn" data-id="activities">
+          Jeux et activites
+        </button>
+        <button class="filter-btn" data-id="lecture">Nos lectures</button>
+        <button class="filter-btn" data-id="tips">Parents Tips</button>
+      </div>
+      <!-- menu items-->
+      <div class="section-center">
+        <!-- single article-->
+        <article class="article-item">
+          <img src="./images/item-1.jpg" alt="article-item" class="photo" />
+          <div class="article-info">
+            <header>
+              <h4>L'art de nouer ses lacets</h4>
+              <h4 class="duration">3mn</h4>
+            </header>
+            <p class="article-text">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime
+              fugit quos obcaecati dolore numquam atque sed
+            </p>
+            <button class="btn">Lire la suite</button>
+          </div>
+        </article>
+        <!-- End of single article-->
+      </div>
+    </section>
+
+    <!-- javascript -->
+    <script src="./index.js"></script>
+  </body>
+</html>
