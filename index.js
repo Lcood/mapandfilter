@@ -82,24 +82,11 @@ const article = [
 ];
 
 const sectionCenter = document.querySelector('.section-center');
-btnFilter = document.querySelectorAll('.filter-btn');
+const containerBtn = document.querySelector('.btn-container');
 
 window.addEventListener('DOMContentLoaded', () => {
   getArticles(article);
-});
-
-btnFilter.forEach((btn) => {
-  btn.addEventListener('click', (e) => {
-    const currentBtn = e.currentTarget.dataset.id;
-    const articleCategory = article.filter((menuArticle) => {
-      if (menuArticle.category === currentBtn) return menuArticle;
-    });
-    if (currentBtn === 'articles') {
-      return getArticles(article);
-    } else {
-      return getArticles(articleCategory);
-    }
-  });
+  displayBtns();
 });
 
 function getArticles(singleArticle) {
@@ -120,4 +107,42 @@ function getArticles(singleArticle) {
   });
   displayArticle = displayArticle.join(' ');
   sectionCenter.innerHTML = displayArticle;
+}
+
+function displayBtns() {
+  // filtrer de manière dynamique les boutons, si changement de donnée aucune répercution sur le menu = > boutons uniques
+  const categories = article.reduce(
+    (values, item) => {
+      // si values n'inclue pas item.category
+      if (!values.includes(item.category)) {
+        // alors ajoute la categorie au tableau
+        values.push(item.category);
+      }
+      // si l'élement est deja présent alors retourne moi le tableau de categorie existant
+      return values;
+    },
+    ['Nos articles']
+  );
+  const categoryBtn = categories
+    .map(() => {
+      return `<button class="filter-btn" data-id=${category}>${category}</button>`;
+    })
+    .join('');
+  containerBtn.innerHTML = categoryBtn;
+  // après ajoue dynamique des boutons, puis on peut les selectionner, et pas avant sinon on ne peut y accèder
+  btnFilter = document.querySelectorAll('.filter-btn');
+
+  btnFilter.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const currentBtn = e.currentTarget.dataset.id;
+      const articleCategory = article.filter((menuArticle) => {
+        if (menuArticle.category === currentBtn) return menuArticle;
+      });
+      if (currentBtn === 'articles') {
+        return getArticles(article);
+      } else {
+        return getArticles(articleCategory);
+      }
+    });
+  });
 }
